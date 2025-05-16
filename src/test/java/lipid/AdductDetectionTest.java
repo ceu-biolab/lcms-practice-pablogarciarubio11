@@ -72,4 +72,38 @@ public class AdductDetectionTest {
         assertEquals( "Adduct inferred from lowest mz in group","[M+H]+", annotation.getAdduct());
     }
 
+    @Test
+    public void shouldDetectAdductBasedOnMzk() {
+
+        // Given two peaks with ~21.98 Da difference (e.g., [M+H]+ and [M+Na]+)
+        Peak mH = new Peak(700.500, 100000.0); // [M+H]+
+        Peak mk = new Peak(738.4564, 80000.0);  // [M+k]+
+        Lipid lipid = new Lipid(1, "PC 34:1", "C42H82NO8P", "PC", 34, 1);
+
+        double annotationRT = 6.5d;
+        Annotation annotation = new Annotation(lipid, mk.getMz(), mk.getIntensity(), annotationRT, IoniationMode.POSITIVE, Set.of(mH, mk));
+
+        //annotation.identifyAdduct();
+
+        assertNotNull("[M+K]+ should be detected", annotation.getAdduct());
+        assertEquals( "Adduct inferred from lowest mz in group","[M+K]+", annotation.getAdduct());
+        System.out.println(annotation.getAdduct());
+
+    }
+
+    @Test
+    public void shouldDetectLossOfWaterAdduct1() {
+        Peak mh = new Peak(700.500, 90000.0);        // [M+H]+
+        Peak mhH2O = new Peak(682.4894, 70000.0);     // [M+H–H₂O]+, ~18.0106 Da less
+
+        Lipid lipid = new Lipid(1, "PE 36:2", "C41H78NO8P", "PE", 36, 2);
+        Annotation annotation = new Annotation(lipid, mhH2O.getMz(), mhH2O.getIntensity(), 7.5d, IoniationMode.POSITIVE, Set.of(mh, mhH2O));
+
+
+
+        assertNotNull("[M+H-H2O]+ should be detected", annotation.getAdduct());
+
+        assertEquals( "Adduct inferred from lowest mz in group","[M+H-H2O]+", annotation.getAdduct());
+    }
+
 }
