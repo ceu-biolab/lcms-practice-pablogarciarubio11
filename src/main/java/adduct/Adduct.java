@@ -25,6 +25,9 @@ public class Adduct {
         return monoisotopicMass;
 
          */
+
+        //DONE IN MASSTRANSFORMATION
+
         return null;
     }
 
@@ -51,6 +54,8 @@ public class Adduct {
         return monoisotopicMass;
 
          */
+
+        //DONE IN MASSTRANSFORMATION
         return null;
     }
 
@@ -70,7 +75,7 @@ public class Adduct {
     /**
      * Returns the ppm difference between measured mass and theoretical mass
      *
-     * @param measuredMass    Mass measured by MS
+     * @param experimentalMass    Mass measured by MS
      * @param ppm ppm of tolerance
      */
     public static double calculateDeltaPPM(Double experimentalMass, int ppm) {

@@ -270,6 +270,7 @@ public class ElutionOrderTest {
         Annotation annotation2 = new Annotation(lipid2, 857.7593, 10E7, 9d, IoniationMode.POSITIVE);
         Annotation annotation3 = new Annotation(lipid3, 913.822, 10E5, 8d, IoniationMode.POSITIVE);
 
+
         LOG.info("Insert data");
 
         try {
@@ -281,7 +282,6 @@ public class ElutionOrderTest {
             instance.fire();
 
             // Here the logic that we expect. In this case we expect the full 3 annotations to have a positive score of 1
-
 
             assertEquals(0d, annotation1.getNormalizedScore(), 0.01); // !! TODO the scores should be between -1 and 1. It is done, but check it out for yourself
             assertEquals(0d, annotation2.getNormalizedScore(), 0.01); // !! TODO the scores should be between -1 and 1. It is done, but check it out for yourself
