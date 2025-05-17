@@ -39,7 +39,7 @@ public class MassTransformation {
         List<Double> infoAdduct=getInfoAdduct(adduct);
         Double multimer=infoAdduct.get(0);
 
-        Double charge=infoAdduct.get(1);
+        Double charge=abs(infoAdduct.get(1));
         monoMass = ((mz * charge) + infoAdduct.get(2)) / multimer;
         return monoMass;
     }
@@ -70,7 +70,7 @@ public class MassTransformation {
         List<Double> infoAdduct=getInfoAdduct(adduct);
         Double multimer=infoAdduct.get(0);
 
-        double charge=infoAdduct.get(1);
+        double charge=abs(infoAdduct.get(1));
         mz = ((monoisotopicMass * multimer) - infoAdduct.get(2))/charge;
         return mz;
     }
@@ -139,10 +139,10 @@ public class MassTransformation {
 
         System.out.println(getMZFromMonoisotopicMass(564.2927239999999,"[M+H]+"));
         System.out.println(getMZFromMonoisotopicMass(282.14636199999995,"[2M+H]+"));
-        System.out.println(getMZFromMonoisotopicMass(1126.570896,"[M+2H]2+"));
+        System.out.println(getMZFromMonoisotopicMass(1128.5854479999998,"[M+2H]2+"));
         System.out.println(getMZFromMonoisotopicMass(530.330598,"[M+Cl]−"));
         System.out.println(getMZFromMonoisotopicMass(566.307276,"[M-H]−"));
-        System.out.println(getMZFromMonoisotopicMass(1132.614552,"[M-2H]2−"));
+        System.out.println(getMZFromMonoisotopicMass(1131.607276,"[M-2H]2−"));
 
     }
 }

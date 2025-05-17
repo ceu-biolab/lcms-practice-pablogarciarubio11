@@ -231,5 +231,12 @@ public class Annotation {
         Lipid lipid3 = new Lipid(3, "TG 54:3", "C57H104O6", "TG", 54, 3);
         Annotation annotation3 = new Annotation(lipid3, peak2.getMz(), peak2.getIntensity(), 10d, IoniationMode.POSITIVE, Set.of(peak1,peak2));
         System.out.println(annotation3);
+
+        System.out.println("___________________________________");
+
+        Peak mh1    = new Peak(883.7760,  85000.0);  // [M–H]⁻ DETECT THIS ONE
+        Peak mCl    = new Peak(919.7522,  85000.0);  // [M+Cl]⁻
+        Lipid lipid4 = new Lipid(3, "TG 54:3", "C57H104O6", "TG", 54, 3);
+        Annotation annotation4 = new Annotation(lipid4,mh1.getMz(),mh1.getIntensity(),10d,IoniationMode.NEGATIVE,Set.of(mh1, mCl));
     }
 }

@@ -106,4 +106,17 @@ public class AdductDetectionTest {
         assertEquals( "Adduct inferred from lowest mz in group","[M+H-H2O]+", annotation.getAdduct());
     }
 
+    @Test
+    public void shouldDetectChlorideAdduct() {
+        Peak mh     = new Peak(883.7760,  85000.0);  // [M–H]⁻ DETECT THIS ONE
+        Peak mCl    = new Peak(919.7522,  85000.0);  // [M+Cl]⁻
+
+        Lipid lipid = new Lipid(3, "TG 54:3", "C57H104O6", "TG", 54, 3);
+
+        Annotation annotation = new Annotation(lipid,mh.getMz(),mh.getIntensity(),10d,IoniationMode.NEGATIVE,Set.of(mh, mCl));
+
+        assertNotNull("[M-H]- should be detected", annotation.getAdduct());
+        assertEquals("Adduct inferred from lowest mz in group","[M-H]−",annotation.getAdduct());
+    }
+
 }
